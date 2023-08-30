@@ -1,6 +1,8 @@
 class Solution {
 public:
 int n;
+/*RECURSION + MEMOISATION
+
 int dp[2501][2501];
     int solve(vector<int>&nums, int i, int p)
     {
@@ -21,5 +23,24 @@ int dp[2501][2501];
         if(n==1)return 1;
         int res= solve(nums,0, -1);
         return res;
+        */
+//BOTTOM UP->code story withmik
+    int lengthOfLIS(vector<int>& nums)
+    {
+        n= nums.size();
+        int maxlis=1;
+        vector<int>dp(n,1);
+        //dp becomes= [1,1,1,1,1,1]
+        for(int i=0; i<n; i++)
+        {
+            for(int j=0; j<i; j++)
+            {
+                if(nums[i]>nums[j]){
+                    dp[i]=max(dp[i],dp[j]+1);
+                    maxlis=max(maxlis,dp[i]);
+                }
+            }
+        }
+        return maxlis;
     }
-};
+}; 
